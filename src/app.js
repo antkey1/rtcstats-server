@@ -7,6 +7,7 @@ const https = require('https');
 const path = require('path');
 const { pipeline } = require('stream');
 const WebSocket = require('ws');
+const Sentry = require('@sentry/node');
 
 const { name: appName, version: appVersion } = require('../package');
 
@@ -523,7 +524,15 @@ function setupSecretManager() {
  */
 async function startRtcstatsServer() {
     logger.info('[App] Initializing: %s; version: %s; env: %s ...', appName, appVersion, getEnvName());
-
+    if (config.server.sentryDSN) {
+        Sentry.init({ 
+            dsn: config.server.sentryDSN,
+            environment: config.server.appEnvironment,
+            release: appVersion,
+        });
+        logger.info('Sentry initialzed');
+    }
+    
     setupSecretManager();
     await setupWebhookSender();
     setupWorkDirectory();

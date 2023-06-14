@@ -12,6 +12,7 @@ server:
     certPath: './certs/cert.pem'
     tempPath : 'temp'
     appEnvironment: dev
+    sentryDSN:
 
 features:
     disableFeatExtraction: false
@@ -20,6 +21,7 @@ amplitude:
     key:
 
 s3:
+    endpoint:
     accessKeyId:
     secretAccessKey:
     region:

@@ -16,22 +16,6 @@ if (config.dynamo.endpoint) {
     dynamoose.aws.ddb.local(config.dynamo.endpoint);
 }
 
-const Document = dynamoose.model(
-    config.dynamo.tableName,
-    {
-        conferenceId: String,
-        conferenceUrl: String,
-        dumpId: String,
-        baseDumpId: String,
-        userId: String,
-        app: String,
-        sessionId: String,
-        startDate: Number,
-        endDate: Number
-    },
-    { create: false }
-);
-
 
 const getDumpId = ({ clientId }) => `${clientId}.gz`;
 
@@ -64,6 +48,22 @@ async function saveEntry(data) {
             startDate,
             endDate
         };
+
+        const Document = dynamoose.model(
+            config.dynamo.tableName,
+            {
+                conferenceId: String,
+                conferenceUrl: String,
+                dumpId: String,
+                baseDumpId: String,
+                userId: String,
+                app: String,
+                sessionId: String,
+                startDate: Number,
+                endDate: Number
+            },
+            { create: false }
+        );
 
         const document = new Document(entry);
 

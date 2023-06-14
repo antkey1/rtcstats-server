@@ -1,6 +1,7 @@
 server:
     logLevel: RTCSTATS_LOG_LEVEL
     appEnvironment: RTCSTATS_ENVIRONMENT
+    sentryDSN: RTCSTATS_SENTRY_DSN
 
 amplitude:
     key: RTCSTATS_AMPLITUDE_KEY
@@ -15,6 +16,9 @@ firehose:
     meetingEventStream: RTCSTATS_FIREHOSE_MEETING_EVENT_STREAM
 
 s3:
+    endpoint: RTCSTATS_S3_AWS_ENDPOINT
+    accessKeyId: RTCSTATS_S3_AWS_ACCESS_KEY_ID
+    secretAccessKey: RTCSTATS_S3_AWS_SECRET_ACCESS_KEY
     region: RTCSTATS_S3_AWS_REGION
     bucket: RTCSTATS_S3_BUCKET
 
